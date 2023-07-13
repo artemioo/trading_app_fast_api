@@ -9,6 +9,7 @@ from auth.database import User
 from auth.auth import auth_backend
 from auth.manager import get_user_manager
 from auth.schemas import UserRead, UserCreate
+from operations.router import router as router_operation
 
 app = FastAPI(
     title="Trading App"
@@ -30,6 +31,14 @@ app.include_router(
     prefix="/auth",
     tags=["auth"],
 )
+
+
+app.include_router(
+    router_operation,
+    prefix="/auth",
+    tags=["auth"],
+)
+
 
 fake_users = [
     {"id": 1, "role": "admin", "name": "Bob"},
